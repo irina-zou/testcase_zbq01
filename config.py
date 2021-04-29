@@ -38,5 +38,4 @@ class Config(object):
 
 
 config = Config()
-emailConfig = config.get_email_config()
-print(emailConfig.mail_pass)
+
