@@ -5,7 +5,9 @@
 
 from openpyxl import load_workbook
 
+from constant import TEST_EXCEL_DIR_PATH
 from model.TestCase import TestCase
+import os
 
 IGNORE_SHEETS = ['测试概要', '用例使用说明']
 
@@ -15,13 +17,16 @@ class ExcelLoader(object):
         pass
 
     def load(self, filePath):
+        test_case_list = []
         wb = load_workbook(filePath)
         sheet_num = len(wb.sheetnames)
         for i in range (0, sheet_num):
             sheet_name = wb.sheetnames[i]
             if sheet_name not in IGNORE_SHEETS:
                 sheet = wb[sheet_name]
-                self.read_sheet(sheet)
+                case_list = self.read_sheet(sheet)
+                test_case_list.extend(case_list)
+        return test_case_list
 
     def read_sheet(self, sheet):
         rows_num = sheet.max_row
@@ -43,3 +48,15 @@ class ExcelLoader(object):
 
         return test_case_list
 
+    def batchLoad(self, dirPath):
+        test_case_list = []
+        for dirs, root, test_case_files in os.walk(dirPath):
+            for test_case_file in test_case_files:
+                if test_case_file.endswith(".xlsx") and not test_case_file.startswith("~"):  # 判断文件结尾的格式，如果是.xlsx就说明是测试用例文件
+                    test_excel_name = os.path.join(dirPath, test_case_file)
+                    print(test_excel_name)
+                    excel_testcase_list = self.load(test_excel_name)
+                    test_case_list.extend(excel_testcase_list)
+                else:
+                    print("不是测试用例文件")
+        return test_case_list

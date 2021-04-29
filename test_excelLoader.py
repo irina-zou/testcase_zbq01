@@ -14,3 +14,8 @@ class TestExcelLoader(TestCase):
         filePath = TEST_EXCEL_DIR_PATH + os.sep + 'abcd.xlsx'
         print(filePath)
         loader.load(TEST_EXCEL_DIR_PATH + os.sep + 'abcd.xlsx')
+
+    def test_batch_load(self):
+        loader = ExcelLoader()
+        test_case_list = loader.batchLoad(TEST_EXCEL_DIR_PATH)
+        print(len(test_case_list))
