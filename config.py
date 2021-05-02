@@ -17,24 +17,24 @@ class Config(object):
             self.data = json.load(f)
 
     def get_database_config(self):
-        databaseJson = self.data["database"]
-        return DatabaseConfig(databaseJson["host"],
-                              databaseJson["port"],
-                              databaseJson["user"],
-                              databaseJson["password"],
-                              databaseJson["db"])
+        database_json = self.data["database"]
+        return DatabaseConfig(database_json["host"],
+                              database_json["port"],
+                              database_json["user"],
+                              database_json["password"],
+                              database_json["db"])
 
     def get_http_config(self):
-        httpJson = self.data["http"]
-        return HttpCinfig(httpJson["baseurl"], httpJson["port"], httpJson["timeout"])
+        http_json = self.data["http"]
+        return HttpCinfig(http_json["baseurl"], http_json["port"], http_json["timeout"])
 
     def get_email_config(self):
-        emailJson = self.data["email"]
-        return EmailConfig(emailJson["on_off"],emailJson["mail_host"],
-                           emailJson["mail_user"],emailJson["mail_pass"],
-                           emailJson["mail_port"],emailJson["sender"],
-                           emailJson["receiver"],emailJson["subject"],
-                           emailJson["content"])
+        email_json = self.data["email"]
+        return EmailConfig(email_json["on_off"], email_json["mail_host"],
+                           email_json["mail_user"], email_json["mail_pass"],
+                           email_json["mail_port"], email_json["sender"],
+                           email_json["receiver"], email_json["subject"],
+                           email_json["content"])
 
 
 config = Config()

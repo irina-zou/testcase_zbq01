@@ -16,9 +16,9 @@ class ExcelLoader(object):
     def __init__(self):
         pass
 
-    def load(self, filePath):
+    def load(self, file_path):
         test_case_list = []
-        wb = load_workbook(filePath)
+        wb = load_workbook(file_path)
         sheet_num = len(wb.sheetnames)
         for i in range (0, sheet_num):
             sheet_name = wb.sheetnames[i]
@@ -48,12 +48,12 @@ class ExcelLoader(object):
 
         return test_case_list
 
-    def batchLoad(self, dirPath):
+    def batchLoad(self, dir_path):
         test_case_list = []
-        for dirs, root, test_case_files in os.walk(dirPath):
+        for dirs, root, test_case_files in os.walk(dir_path):
             for test_case_file in test_case_files:
                 if test_case_file.endswith(".xlsx") and not test_case_file.startswith("~"):  # 判断文件结尾的格式，如果是.xlsx就说明是测试用例文件
-                    test_excel_name = os.path.join(dirPath, test_case_file)
+                    test_excel_name = os.path.join(dir_path, test_case_file)
                     print(test_excel_name)
                     excel_testcase_list = self.load(test_excel_name)
                     test_case_list.extend(excel_testcase_list)
