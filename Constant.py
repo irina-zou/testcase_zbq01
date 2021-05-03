@@ -4,15 +4,15 @@
 # @Function : 常量
 import os
 
-DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+PROJECT_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 """
 config.json path
 """
-CONFIG_PATH = DIR_PATH + os.sep + 'resource' + os.sep + 'config' + os.sep + 'config.json'
+CONFIG_PATH = PROJECT_DIR_PATH + os.sep + 'resource' + os.sep + 'config' + os.sep + 'config.json'
 
 
-TEST_EXCEL_DIR_PATH = DIR_PATH + os.sep + 'test_excel'
+TEST_EXCEL_DIR_PATH = PROJECT_DIR_PATH + os.sep + 'test_excel'
 
 
 
