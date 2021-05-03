@@ -17,6 +17,8 @@ class HttpRequest(object):
     def __init__(self):
         self.base_url = config.get_http_config().baseurl + ':' + config.get_http_config().port
         self.token = ''
+        self.account = config.get_login_config().account
+        self.password = config.get_login_config().password
 
     def login(self, account: str, password: str) -> str:
         payload = {
@@ -32,6 +34,8 @@ class HttpRequest(object):
         return self.token
 
     def assert_request(self, test_case: TestCase) -> ActionResult:
+        if self.token is None or len(self.token) <= 0:
+            self.login(self.account, self.password)
         request_mode = test_case.request_mode.upper()
         if request_mode is 'POST':
             return self.assert_post(test_case)
@@ -39,9 +43,6 @@ class HttpRequest(object):
             return self.assert_get(test_case)
 
     def assert_post(self, test_case: TestCase) -> ActionResult:
-        if self.token is None or len(self.token) <= 0:
-            raise Exception('token is none or empty')
-
         url = self.base_url + test_case.uri
         payload = test_case.params
         headers = test_case.headers
@@ -50,9 +51,6 @@ class HttpRequest(object):
         return self.generate_action_result(result, test_case)
 
     def assert_get(self, test_case: TestCase) -> ActionResult:
-        if self.token is None or len(self.token) <= 0:
-            raise Exception('token is none or empty')
-
         url = self.base_url + test_case.uri
         payload = test_case.params
         headers = test_case.headers
