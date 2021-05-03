@@ -11,6 +11,10 @@ config.json path
 """
 CONFIG_PATH = PROJECT_DIR_PATH + os.sep + 'resource' + os.sep + 'config' + os.sep + 'config.json'
 
+"""
+*.ui 文件所在目录 
+"""
+UI_XML_DIR = PROJECT_DIR_PATH + os.sep + 'resource' + os.sep + 'ui' + os.sep
 
 TEST_EXCEL_DIR_PATH = PROJECT_DIR_PATH + os.sep + 'test_excel'
 
