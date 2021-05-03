@@ -2,7 +2,7 @@
 # @Author : 'zoubq'
 # @Time : 2021/4/29 22:15
 from unittest import TestCase
-from config import config
+from Config import config
 
 
 # @Function :

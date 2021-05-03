@@ -3,12 +3,12 @@
 # @Time : 2021/4/28 21:11
 # @Function : 读取 config.json中的内容
 
-from constant import CONFIG_PATH
+from Constant import CONFIG_PATH
 import json
 
 from model.DatabaseConfig import DatabaseConfig
 from model.EmailConfig import EmailConfig
-from model.HttpConfig import HttpCinfig
+from model.HttpConfig import HttpConfig
 
 
 class Config(object):
@@ -26,7 +26,7 @@ class Config(object):
 
     def get_http_config(self):
         http_json = self.data["http"]
-        return HttpCinfig(http_json["baseurl"], http_json["port"], http_json["timeout"])
+        return HttpConfig(http_json["baseurl"], http_json["port"], http_json["timeout"])
 
     def get_email_config(self):
         email_json = self.data["email"]

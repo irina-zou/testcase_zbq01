@@ -4,7 +4,7 @@
 # @Function :
 
 
-class HttpCinfig(object):
+class HttpConfig(object):
     def __init__(self, baseurl, port, timeout):
         self.baseurl = baseurl
         self.port = port
