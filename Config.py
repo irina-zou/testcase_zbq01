@@ -9,6 +9,7 @@ import json
 from model.DatabaseConfig import DatabaseConfig
 from model.EmailConfig import EmailConfig
 from model.HttpConfig import HttpConfig
+from model.LoginConfig import LoginConfig
 
 
 class Config(object):
@@ -35,6 +36,10 @@ class Config(object):
                            email_json["mail_port"], email_json["sender"],
                            email_json["receiver"], email_json["subject"],
                            email_json["content"])
+
+    def get_login_config(self):
+        login_json = self.data["login"]
+        return LoginConfig(login_json["account"], login_json["password"])
 
 
 config = Config()
