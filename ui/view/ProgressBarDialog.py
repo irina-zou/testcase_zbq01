@@ -7,6 +7,7 @@ class ProgressBarDialog(QDialog):
         super(ProgressBarDialog, self).__init__(parent)
 
         self.progressBar = QProgressBar()
+        self.progressBar.setRange(0, 100)
         self.cancelButton = QPushButton("取消")
         self.resize(600, 200)
 

@@ -2,20 +2,20 @@
 from PySide2.QtUiTools import QUiLoader
 
 from Constant import UI_XML_DIR
-import ui.viewmodel.MainWindowViewModel as MainWindowViewModel
-import ui.view.ProgressBarDialog as ProgressBarDialog
+from ui.view.ProgressBarDialog import ProgressBarDialog
+from ui.viewmodel.MainWindowViewModel import MainWindowViewModel
 
 
 class MainWindow(object):
 
     def __init__(self):
         self.ui = QUiLoader().load(UI_XML_DIR + 'MainWindow.ui')
-        self.viewModel = MainWindowViewModel.MainWindowViewModel(self)
+        self.viewModel = MainWindowViewModel(self)
         self.ui.selectButton.clicked.connect(self.viewModel.handle_select_button_click)
         self.ui.actionButton.clicked.connect(self.viewModel.handle_action_button_click)
         self.ui.exportButton.clicked.connect(self.viewModel.handle_export_button_click)
 
-        self.progressDialog = ProgressBarDialog.ProgressBarDialog()
+        self.progressDialog = ProgressBarDialog()
         self.progressDialog.set_close_callback(self.viewModel.progress_dialog_closed)
 
     def set_path_text_content(self, file_path):
@@ -39,5 +39,12 @@ class MainWindow(object):
 
     def progress_dialog_show(self):
         self.progressDialog.show()
+
+    def set_progress_value(self, value):
+        self.progressDialog.progressBar.setValue(value)
+        if value >= 100:
+            self.progress_dialog_close()
+            self.set_all_button_enable()
+
 
 

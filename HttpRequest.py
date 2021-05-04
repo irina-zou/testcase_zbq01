@@ -37,7 +37,7 @@ class HttpRequest(object):
         if self.token is None or len(self.token) <= 0:
             self.login(self.account, self.password)
         request_mode = test_case.request_mode.upper()
-        if request_mode is 'POST':
+        if request_mode == 'POST':
             return self.assert_post(test_case)
         else:
             return self.assert_get(test_case)

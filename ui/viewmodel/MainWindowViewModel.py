@@ -1,12 +1,13 @@
 from PySide2.QtWidgets import QFileDialog
 
-import ui.view.MainWindow as MainWindow
+import ui.model.MainWindowModel as MainWindowModel
 
 
 class MainWindowViewModel(object):
 
-    def __init__(self, view: MainWindow.MainWindow):
-        self.view = view
+    def __init__(self, window):
+        self.view = window
+        self.model = MainWindowModel.MainWindowModel(self)
 
     def handle_select_button_click(self):
         print("select button click")
@@ -20,6 +21,7 @@ class MainWindowViewModel(object):
             self.view.set_all_button_disable()
             self.view.progress_dialog_close()
             self.view.progress_dialog_show()
+            self.model.action_test_case()
 
 
     def handle_export_button_click(self):
@@ -27,3 +29,9 @@ class MainWindowViewModel(object):
 
     def progress_dialog_closed(self):
         self.view.set_all_button_enable()
+
+    def get_file_path(self):
+        return self.view.get_path_text_content()
+
+    def set_progress_callback(self, progress_rate):
+        self.view.set_progress_value(progress_rate*100)
