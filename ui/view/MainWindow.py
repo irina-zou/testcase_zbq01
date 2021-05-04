@@ -46,5 +46,13 @@ class MainWindow(object):
             self.progress_dialog_close()
             self.set_all_button_enable()
 
+    def set_success_num(self, num):
+        self.ui.succNumLabel.setText(num)
+
+    def set_fail_num(self, num):
+        self.ui.failNumLabel.setText(num)
+
+    def set_sum_num(self, num):
+        self.ui.sumNumLabel.setText(num)
 
 

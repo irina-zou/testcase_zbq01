@@ -17,6 +17,8 @@ class ProgressBarDialog(QDialog):
         self.setLayout(layout)
 
         self.cancelButton.clicked.connect(self.cancel_task)
+        # 先暂时disable掉取消，后面实现
+        self.cancelButton.setEnabled(False)
 
     def cancel_task(self):
         self.close()

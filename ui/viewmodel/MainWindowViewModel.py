@@ -35,3 +35,12 @@ class MainWindowViewModel(object):
 
     def set_progress_callback(self, progress_rate):
         self.view.set_progress_value(progress_rate*100)
+
+    def set_success_num(self, num):
+        self.view.set_success_num(str(num))
+
+    def set_fail_num(self, num):
+        self.view.set_fail_num(str(num))
+
+    def set_sum_num(self, num):
+        self.view.set_sum_num(str(num))
