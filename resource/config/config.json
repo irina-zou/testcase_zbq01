@@ -24,5 +24,10 @@
     "subject" : "ces接口自动化测试",
     "content" : "ces接口自动化测试结果"
 
+  },
+
+  "login": {
+    "account": "zhang_san",
+    "password": "123456"
   }
 }

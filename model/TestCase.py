@@ -2,6 +2,8 @@
 #@Author : 'zoubq'
 # @Time : 2021/4/29 22:22
 # @Function :
+import json
+
 
 class TestCase(object):
 
@@ -10,5 +12,8 @@ class TestCase(object):
         self.automatic = model["automatic"]
         self.uri = model["uri"]
         self.request_mode = model["request_mode"]
-        self.headers = model["headers"]
-        self.params = model["params"]
+        self.headers = json.loads(model["headers"])
+        self.params = json.loads(model["params"])
+
+        self.expect_response_status_code = model["response_status_code"]
+        self.expect_response_payload = json.loads(model["response_payload"])
