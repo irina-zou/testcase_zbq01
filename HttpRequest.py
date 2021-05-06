@@ -47,7 +47,7 @@ class HttpRequest(object):
         payload = test_case.params
         headers = test_case.headers
         headers['token'] = self.token
-        result = requests.post(url, data=json.dumps(payload, headers=headers))
+        result = requests.post(url, data=json.dumps(payload), headers=headers, verify=False)
         return self.generate_action_result(result, test_case)
 
     def assert_get(self, test_case: TestCase) -> ActionResult:
@@ -55,7 +55,7 @@ class HttpRequest(object):
         payload = test_case.params
         headers = test_case.headers
         headers['token'] = self.token
-        result = requests.get(url, data=json.dumps(payload, headers=headers))
+        result = requests.get(url, data=json.dumps(payload), headers=headers, verify=False)
         return self.generate_action_result(result, test_case)
 
     def generate_action_result(self, result: Response, test_case: TestCase) -> ActionResult:

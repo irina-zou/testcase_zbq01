@@ -15,5 +15,5 @@ class TestCase(object):
         self.headers = json.loads(model["headers"])
         self.params = json.loads(model["params"])
 
-        self.expect_response_status_code = model["response_status_code"]
-        self.expect_response_payload = json.loads(model["response_payload"])
+        self.expect_response_status_code = model["expect_response_status_code"]
+        self.expect_response_payload = json.loads(model["expect_response_payload"])

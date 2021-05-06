@@ -67,24 +67,12 @@ class MainWindowModel(object):
     def action_task(self):
         # 1. 读取出excel内容
         excel_loader = ExcelLoader()
-        #test_case_list = excel_loader.load(self.viewModel.get_file_path())
-        # test begin
-        test_case_list = [1,2,3,4,5,6]
-        sleep(1)
-        # test end
+        test_case_list = excel_loader.load(self.viewModel.get_file_path())
         test_case_signals.progress_signal.emit(0.5)
         # 2. 一条条执行testcase
         result_list = []
         for test_case in test_case_list:
-            #action_result = httpRequest.assert_request(test_case)
-            # test begin
-            sleep(1)
-            action_result = ActionResult()
-            if test_case % 2 == 0:
-                action_result.result = True
-            else:
-                action_result.result = False
-            # test end
+            action_result = httpRequest.assert_request(test_case)
             result_list.append(action_result)
         # 3. 完成
         test_case_signals.result_list_signal.emit(result_list)
