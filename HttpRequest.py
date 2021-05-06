@@ -22,13 +22,13 @@ class HttpRequest(object):
 
     def login(self, account: str, password: str) -> str:
         payload = {
-            'account': account,
+            'name': account,
             'password': password
         }
         headers = {
             'content-type': 'application/json'
         }
-        result = requests.post(self.base_url + '/login', data=json.dump(payload), headers=headers)
+        result = requests.post(self.base_url + '/auth/v1/login', data=json.dumps(payload), headers=headers, verify=False)
         ret_json = result.json()
         self.token = ret_json['data']["token"]
         return self.token
@@ -47,7 +47,7 @@ class HttpRequest(object):
         payload = test_case.params
         headers = test_case.headers
         headers['token'] = self.token
-        result = requests.post(url, data=json.dump(payload, headers=headers))
+        result = requests.post(url, data=json.dumps(payload, headers=headers))
         return self.generate_action_result(result, test_case)
 
     def assert_get(self, test_case: TestCase) -> ActionResult:
@@ -55,7 +55,7 @@ class HttpRequest(object):
         payload = test_case.params
         headers = test_case.headers
         headers['token'] = self.token
-        result = requests.get(url, data=json.dump(payload, headers=headers))
+        result = requests.get(url, data=json.dumps(payload, headers=headers))
         return self.generate_action_result(result, test_case)
 
     def generate_action_result(self, result: Response, test_case: TestCase) -> ActionResult:

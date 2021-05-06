@@ -1,3 +1,4 @@
 test_excel
 venv
 .idea
+resource/config/config.json
