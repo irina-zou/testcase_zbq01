@@ -39,6 +39,10 @@ class HttpRequest(object):
         request_mode = test_case.request_mode.upper()
         if request_mode == 'POST':
             return self.assert_post(test_case)
+        elif request_mode == 'PUT':
+            return self.assert_put(test_case)
+        elif request_mode == 'DELETE':
+            return self.assert_delete(test_case)
         else:
             return self.assert_get(test_case)
 
@@ -51,6 +55,22 @@ class HttpRequest(object):
         return self.generate_action_result(result, test_case)
 
     def assert_get(self, test_case: TestCase) -> ActionResult:
+        url = self.base_url + test_case.uri
+        payload = test_case.params
+        headers = test_case.headers
+        headers['token'] = self.token
+        result = requests.get(url, data=json.dumps(payload), headers=headers, verify=False)
+        return self.generate_action_result(result, test_case)
+
+    def assert_put(self, test_case: TestCase) -> ActionResult:
+        url = self.base_url + test_case.uri
+        payload = test_case.params
+        headers = test_case.headers
+        headers['token'] = self.token
+        result = requests.post(url, data=json.dumps(payload), headers=headers, verify=False)
+        return self.generate_action_result(result, test_case)
+
+    def assert_delete(self, test_case: TestCase) -> ActionResult:
         url = self.base_url + test_case.uri
         payload = test_case.params
         headers = test_case.headers

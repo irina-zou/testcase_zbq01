@@ -1,7 +1,7 @@
 # _*_ coding :utf-8
 # @Author : 'zoubq'
 # @Time : 2021/4/28 21:30
-# @Function :
+# @Function : 测试结果与测试用例的预期结果对比
 
 class ActionResult(object):
 
