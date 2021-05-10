@@ -1,3 +1,5 @@
+import json
+
 from PySide2.QtWidgets import QFileDialog
 
 import ui.model.MainWindowModel as MainWindowModel
@@ -25,7 +27,8 @@ class MainWindowViewModel(object):
 
 
     def handle_export_button_click(self):
-        print("export button click")
+        print("export button click: ")
+
 
     def progress_dialog_closed(self):
         self.view.set_all_button_enable()
