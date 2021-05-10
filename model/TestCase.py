@@ -1,5 +1,5 @@
 # _*_ coding :utf-8
-#@Author : 'zoubq'
+# @Author : 'zoubq'
 # @Time : 2021/4/29 22:22
 # @Function :
 import json
@@ -8,7 +8,7 @@ import json
 class TestCase(object):
 
     def __init__(self, model):
-        self.caseName = model["CaseName"]
+        self.case_name = model["case_name"]
         self.automatic = model["automatic"]
         self.uri = model["uri"]
         self.request_mode = model["request_mode"]

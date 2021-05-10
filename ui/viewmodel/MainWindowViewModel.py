@@ -28,6 +28,10 @@ class MainWindowViewModel(object):
 
     def handle_export_button_click(self):
         print("export button click: ")
+        # action_result_list = self.model.result_list
+        # action_result_list -> excel_result_list
+        # 創建 ExcelExporter()
+        # excel_export.write_to_excel()
 
 
     def progress_dialog_closed(self):
