@@ -21,7 +21,7 @@ class ExcelExporter(object):
         for row in range(len(excel_result_list)):
             for column in range(len(RESULT_KEY_LIST)):
                 print(RESULT_KEY_LIST[column])
-                ws.cell(row+2, column+1).value = excel_result_list[row].parse_to_dict()[RESULT_KEY_LIST[column]]
+                ws.cell(row+2, column+1).value = str(excel_result_list[row].parse_to_dict()[RESULT_KEY_LIST[column]])
 
         # 注意，写入后一定要保存
         wb.save(file_path)

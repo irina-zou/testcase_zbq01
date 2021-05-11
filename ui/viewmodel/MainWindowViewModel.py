@@ -1,8 +1,12 @@
 import json
+import os
 
 from PySide2.QtWidgets import QFileDialog
 
 import ui.model.MainWindowModel as MainWindowModel
+from Constant import PROJECT_DIR_PATH
+from ExcelExporter import ExcelExporter
+from model.ExcelResult import ExcelResult
 
 
 class MainWindowViewModel(object):
@@ -28,10 +32,19 @@ class MainWindowViewModel(object):
 
     def handle_export_button_click(self):
         print("export button click: ")
-        # action_result_list = self.model.result_list
-        # action_result_list -> excel_result_list
-        # 創建 ExcelExporter()
-        # excel_export.write_to_excel()
+        action_result_list = self.model.result_list
+        print(action_result_list)
+        export = ExcelExporter()
+        excel_result_list = []
+        for i in range(len(action_result_list)):
+            action_result = action_result_list[i]
+            print(action_result)
+            export_result = ExcelResult()
+            export_result.transform(action_result)
+            excel_result_list.append(export_result)
+        export.write_to_excel(PROJECT_DIR_PATH + os.sep + 'test_result' + os.sep + 'test_result.xlsx', excel_result_list)
+
+
 
 
     def progress_dialog_closed(self):

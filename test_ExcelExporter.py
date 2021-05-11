@@ -10,12 +10,17 @@ from ExcelExporter import ExcelExporter
 from model.ExcelResult import ExcelResult
 
 
+
+
 class TestExcelExporter(TestCase):
+
     def test_write_to_excel(self):
+
         export = ExcelExporter()
         excel_result_list = []
         excel_result = ExcelResult()
         excel_result.case_name = '测试'
+        excel_result.params = "{ 'departName': '125475553', 'parentDepartId' : '1','departLevel' : '1'}"
         excel_result.response_payload = "{ 'success': 'ok' }"
 
         excel_result_list.append(excel_result)
