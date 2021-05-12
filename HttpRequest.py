@@ -78,9 +78,10 @@ class HttpRequest(object):
         result = requests.get(url, data=json.dumps(payload), headers=headers, verify=False)
         return self.generate_action_result(result, test_case)
 
+    #比较预期结果和实际结果，当code一样时，同时实际结果的payload中包含预期的payload时，结果返回为true
     def generate_action_result(self, result: Response, test_case: TestCase) -> ActionResult:
         action_result = ActionResult()
-        action_result.result = result.status_code == test_case.expect_response_status_code and result.json() == test_case.expect_response_payload
+        action_result.result = result.status_code == test_case.expect_response_status_code and set(test_case.expect_response_payload).issubset(result.json())
         action_result.test_case = test_case
         action_result.response_payload = result.json()
         action_result.response_status_code = result.status_code
